@@ -1,12 +1,16 @@
-import NavBar from "../components/NavBar";
+import Layout from "../components/Layout";
+import { QueryClient, QueryClientProvider } from "react-query";
 import "../styles/globals.css";
 
 function App({ Component, pageProps }) {
+  const queryClient = new QueryClient();
+
   return (
-    <main>
-      <NavBar />
-      <Component {...pageProps} />
-    </main>
+    <QueryClientProvider client={queryClient}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </QueryClientProvider>
   );
 }
 
